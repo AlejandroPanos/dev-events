@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
+import { PHProvider } from "./providers";
 import "./globals.css";
 import LightRays from "@/components/LightRays";
 import Navbar from "@/components/Navbar";
@@ -27,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${schibstedGrotesk.variable} ${martianMono.variable} min-h-screen antialiased`}
+        suppressHydrationWarning
+        className={`${schibstedGrotesk.variable} ${martianMono.variable} min-h-screen antialiased text-white bg-slate-950`}
       >
         <Navbar />
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
@@ -43,7 +45,9 @@ export default function RootLayout({
             distortion={0.01}
           />
         </div>
-        <main>{children}</main>
+        <main>
+          <PHProvider>{children}</PHProvider>
+        </main>
       </body>
     </html>
   );
